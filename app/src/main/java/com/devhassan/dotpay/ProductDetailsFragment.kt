@@ -1,17 +1,17 @@
 package com.devhassan.dotpay
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
+import android.util.DisplayMetrics
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.devhassan.dotpay.databinding.FragmentProductDetailsBinding
 import com.google.android.material.bottomsheet.BottomSheetBehavior
-import com.google.android.material.bottomsheet.BottomSheetBehavior.STATE_HALF_EXPANDED
 import dagger.hilt.android.AndroidEntryPoint
-import kotlin.math.abs
+
 
 @AndroidEntryPoint
 class ProductDetailsFragment : Fragment() {
@@ -35,10 +35,14 @@ class ProductDetailsFragment : Fragment() {
 
 
     private fun setUpBottomSheetDialog() {
+        val displayMetrics = DisplayMetrics()
+        activity?.windowManager?.defaultDisplay?.getMetrics(displayMetrics)
+        val height = displayMetrics.heightPixels
         val bottomSheetBehavior = BottomSheetBehavior.from(binding.productDetailsBottomSheetDialog)
-        //bottomSheetBehavior.peekHeight = 550
+        bottomSheetBehavior.peekHeight = height / 2
         bottomSheetBehavior.isHideable = false
-        bottomSheetBehavior.state = STATE_HALF_EXPANDED
+        bottomSheetBehavior.isDraggable = false
+
     }
 
     override fun onDestroy() {

@@ -14,7 +14,7 @@ import timber.log.Timber
 
 class BrandAdapter(
     private val utils: Utils,
-    private val onBrandClicked: (position: Int, itemAtPosition: Brand) -> Unit,
+    private val onSeeMoreClicked: (position: Int, itemAtPosition: Brand) -> Unit,
     private val onProductClicked: (position: Int, itemAtPosition: Product) -> Unit
 ) : ListAdapter<Brand, BrandAdapter.ProductTypeVH>(object :
     DiffUtil.ItemCallback<Brand>() {
@@ -39,7 +39,7 @@ class BrandAdapter(
             onItemClick = { position ->
                 try {
                     val itemAtPosition = currentList[position]
-                    this.onBrandClicked(position, itemAtPosition)
+                    this.onSeeMoreClicked(position, itemAtPosition)
                 } catch (e: Exception) {
                 }
 
@@ -63,7 +63,7 @@ class BrandAdapter(
         RecyclerView.ViewHolder(binding.root) {
 
         init {
-            binding.root.setOnClickListener {
+            binding.brandSeeMoreTV.setOnClickListener {
                 onItemClick(bindingAdapterPosition)
             }
         }

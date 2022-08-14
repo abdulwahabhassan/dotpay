@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.ui.setupWithNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.devhassan.dotpay.databinding.FragmentBrandsBinding
 import com.devhassan.dotpay.databinding.FragmentProductTypeBinding
@@ -33,13 +34,14 @@ class ProductTypeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding.productTypeMaterialToolbar.setupWithNavController(findNavController())
         initProductTypeAdapter()
     }
 
     private fun initProductTypeAdapter() {
         productTypeAdapter = ProductTypeAdapter(
             utils = utils,
-            onProductTypeClicked = { position: Int, itemAtPosition: ProductType ->
+            onSeeMoreClicked = { position: Int, itemAtPosition: ProductType ->
                 Toast.makeText(
                     requireContext(),
                     "Brand ${itemAtPosition.name} $position clicked",
@@ -63,10 +65,10 @@ class ProductTypeFragment : Fragment() {
         binding.productTypeRV.adapter = productTypeAdapter
         productTypeAdapter.submitList(
             listOf(
-                ProductType("My brand", Product.products),
-                ProductType("Our brand", Product.products.dropLast(2)),
-                ProductType("Your brand", Product.products),
-                ProductType("Her brand", Product.products.dropLast(1))
+                ProductType("My product type", Product.products),
+                ProductType("Our product type", Product.products.dropLast(2)),
+                ProductType("Your product type", Product.products),
+                ProductType("Her product type", Product.products.dropLast(1))
             )
         )
     }

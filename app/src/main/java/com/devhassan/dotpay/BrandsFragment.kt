@@ -38,7 +38,7 @@ class BrandsFragment : Fragment() {
     private fun initBrandAdapter() {
         brandAdapter = BrandAdapter(
             utils = utils,
-            onBrandClicked = { position: Int, itemAtPosition: Brand ->
+            onSeeMoreClicked = { position: Int, itemAtPosition: Brand ->
                 Toast.makeText(
                     requireContext(),
                     "Brand ${itemAtPosition.name} $position clicked",
@@ -63,9 +63,9 @@ class BrandsFragment : Fragment() {
         brandAdapter.submitList(
             listOf(
                 Brand("My brand", Product.products),
-                Brand("Our brand", Product.products.dropLast(2)),
+                Brand("Our brand", Product.products.dropLast(17)),
                 Brand("Your brand", Product.products),
-                Brand("Her brand", Product.products.dropLast(1))
+                Brand("Her brand", Product.products.dropLast(14))
             )
         )
     }

@@ -25,6 +25,7 @@
             android:text="Some brand"
             />
         <TextView
+            android:id="@+id/brandSeeMoreTV"
             android:layout_width="wrap_content"
             android:layout_height="32dp"
             android:layout_marginEnd="8dp"
