@@ -16,7 +16,7 @@ class BrandAdapter(
     private val utils: Utils,
     private val onBrandClicked: (position: Int, itemAtPosition: Brand) -> Unit,
     private val onProductClicked: (position: Int, itemAtPosition: Product) -> Unit
-) : ListAdapter<Brand, BrandAdapter.BrandVH>(object :
+) : ListAdapter<Brand, BrandAdapter.ProductTypeVH>(object :
     DiffUtil.ItemCallback<Brand>() {
 
     override fun areItemsTheSame(oldItem: Brand, newItem: Brand): Boolean {
@@ -31,16 +31,17 @@ class BrandAdapter(
 
     private val viewPool = RecycledViewPool()
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BrandVH {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProductTypeVH {
         val binding =
             LayoutBrandItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return BrandVH(
+        return ProductTypeVH(
             binding,
             onItemClick = { position ->
                 try {
                     val itemAtPosition = currentList[position]
                     this.onBrandClicked(position, itemAtPosition)
-                } catch (e: Exception) { }
+                } catch (e: Exception) {
+                }
 
             }
         )
@@ -49,13 +50,13 @@ class BrandAdapter(
 
     override fun getItemCount(): Int = currentList.size
 
-    override fun onBindViewHolder(holder: BrandVH, position: Int) {
+    override fun onBindViewHolder(holder: ProductTypeVH, position: Int) {
         val itemAtPosition = currentList[position]
         holder.bind(itemAtPosition)
     }
 
 
-    inner class BrandVH(
+    inner class ProductTypeVH(
         private val binding: LayoutBrandItemBinding,
         onItemClick: (position: Int) -> Unit
     ) :
@@ -74,9 +75,12 @@ class BrandAdapter(
 
                 val layoutManager = LinearLayoutManager(root.context, HORIZONTAL, false)
                 layoutManager.initialPrefetchItemCount = brand.products.size
-                brandProductsRV.layoutManager =  layoutManager
+                brandProductsRV.layoutManager = layoutManager
 
-                val productAdapter = ProductAdapter(utils) { position, itemAtPosition ->
+                val productAdapter = ProductAdapter(
+                    ProductAdapter.ProductAdapterViewType.HORIZONTAL_VIEW_TYPE,
+                    utils
+                ) { position, itemAtPosition ->
                     onProductClicked(position, itemAtPosition)
                 }
                 brandProductsRV.adapter = productAdapter

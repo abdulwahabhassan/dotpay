@@ -1,21 +1,21 @@
 package com.devhassan.dotpay
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
-import com.devhassan.dotpay.databinding.FragmentProductsBinding
+import com.devhassan.dotpay.databinding.FragmentBrandsBinding
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class ProductsFragment : Fragment() {
+class BrandsFragment : Fragment() {
 
-    private var _binding: FragmentProductsBinding? = null
+    private var _binding: FragmentBrandsBinding? = null
     private val binding get() = _binding!!
     private lateinit var brandAdapter: BrandAdapter
 
@@ -26,7 +26,7 @@ class ProductsFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = FragmentProductsBinding.inflate(inflater, container, false)
+        _binding = FragmentBrandsBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -44,6 +44,8 @@ class ProductsFragment : Fragment() {
                     "Brand ${itemAtPosition.name} $position clicked",
                     Toast.LENGTH_LONG
                 ).show()
+                val action = BrandsFragmentDirections.actionBrandsFragmentToProductTypeFragment()
+                findNavController().navigate(action)
             },
             onProductClicked = { position: Int, itemAtPosition: Product ->
                 Toast.makeText(
@@ -51,6 +53,8 @@ class ProductsFragment : Fragment() {
                     "Product ${itemAtPosition.name} $position clicked",
                     Toast.LENGTH_LONG
                 ).show()
+                val action = BrandsFragmentDirections.actionBrandsFragmentToProductDetailsFragment()
+                findNavController().navigate(action)
             }
         )
         brandAdapter.stateRestorationPolicy =
@@ -65,7 +69,6 @@ class ProductsFragment : Fragment() {
             )
         )
     }
-
 
     override fun onDestroy() {
         super.onDestroy()

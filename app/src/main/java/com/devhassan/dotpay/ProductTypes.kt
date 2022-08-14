@@ -1,6 +1,6 @@
 package com.devhassan.dotpay
 
-enum class ProductType() {
+enum class ProductTypes {
     BLUSH,
     BRONZER,
     EYEBROW,
