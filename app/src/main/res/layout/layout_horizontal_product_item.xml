@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_margin="8dp"
+    app:cardCornerRadius="8dp"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/productIV"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:background="@color/black"
+            android:src="@drawable/ic_launcher_foreground"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/productNameTV"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:text="Some product"
+            android:textSize="12sp"
+            android:fontFamily="@font/roboto"
+            android:layout_marginTop="8dp"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginBottom="16dp"
+            app:layout_constraintEnd_toEndOf="@+id/productIV"
+            app:layout_constraintStart_toStartOf="@+id/productIV"
+            app:layout_constraintTop_toBottomOf="@+id/productIV" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>

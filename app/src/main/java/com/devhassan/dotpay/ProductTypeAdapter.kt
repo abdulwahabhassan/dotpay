@@ -1,3 +1,4 @@
 package com.devhassan.dotpay
 
-data class ProductType()
+class ProductTypeAdapter {
+}
