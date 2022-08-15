@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".BrandsFragment"
+    tools:context=".ui.BrandsFragment"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <com.google.android.material.appbar.MaterialToolbar
@@ -41,6 +41,7 @@
         android:id="@+id/brandRV"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:visibility="invisible"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -49,5 +50,18 @@
         app:layout_constraintTop_toBottomOf="@+id/productsMaterialToolbar"
         app:layout_constraintVertical_bias="0.0"
         tools:listitem="@layout/layout_brand_item" />
+
+    <com.google.android.material.progressindicator.CircularProgressIndicator
+        android:id="@+id/progressIndicator"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:indeterminate="true"
+        android:visibility="visible"
+        app:indicatorColor="@color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/productsMaterialToolbar"
+        app:trackColor="@color/gray" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

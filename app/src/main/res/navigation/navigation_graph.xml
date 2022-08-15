@@ -6,7 +6,7 @@
     app:startDestination="@id/brandsFragment">
     <fragment
         android:id="@+id/brandsFragment"
-        android:name="com.devhassan.dotpay.BrandsFragment"
+        android:name="com.devhassan.dotpay.ui.BrandsFragment"
         tools:layout="@layout/fragment_brands" >
         <action
             android:id="@+id/action_brandsFragment_to_productTypeFragment"
@@ -17,7 +17,7 @@
     </fragment>
     <fragment
         android:id="@+id/productTypeFragment"
-        android:name="com.devhassan.dotpay.ProductTypeFragment"
+        android:name="com.devhassan.dotpay.ui.ProductTypeFragment"
         tools:layout="@layout/fragment_product_type" >
         <action
             android:id="@+id/action_productTypeFragment_to_productsFragment"
@@ -28,7 +28,7 @@
     </fragment>
     <fragment
         android:id="@+id/productsFragment"
-        android:name="com.devhassan.dotpay.ProductsFragment"
+        android:name="com.devhassan.dotpay.ui.ProductsFragment"
         tools:layout="@layout/fragment_products" >
         <action
             android:id="@+id/action_productsFragment_to_productDetailsFragment"
@@ -36,6 +36,6 @@
     </fragment>
     <fragment
         android:id="@+id/productDetailsFragment"
-        android:name="com.devhassan.dotpay.ProductDetailsFragment"
+        android:name="com.devhassan.dotpay.ui.ProductDetailsFragment"
         tools:layout="@layout/fragment_product_details" />
 </navigation>

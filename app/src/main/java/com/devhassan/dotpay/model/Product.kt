@@ -1,11 +1,11 @@
-package com.devhassan.dotpay
+package com.devhassan.dotpay.model
 
 import com.squareup.moshi.Json
 
 data class Product (
-    val id: Long,
-    val brand: String? = null,
-    val name: String,
+    val id: Long = 0,
+    val brand: String? = "null",
+    val name: String? = null,
     val price: String? = null,
 
     @Json(name = "price_sign")
@@ -14,38 +14,38 @@ data class Product (
     val currency: String? = null,
 
     @Json(name = "image_link")
-    val imageLink: String,
+    val imageLink: String? = null,
 
     @Json(name = "product_link")
-    val productLink: String,
+    val productLink: String? = null,
 
     @Json(name = "website_link")
-    val websiteLink: String,
+    val websiteLink: String? = null,
 
     val description: String? = null,
     val rating: Double? = null,
     val category: String? = null,
 
     @Json(name = "product_type")
-    val productType: String,
+    val productType: String? = null,
 
     @Json(name = "tag_list")
-    val tagList: List<String>,
+    val tagList: List<String>? = emptyList(),
 
     @Json(name = "created_at")
-    val createdAt: String,
+    val createdAt: String? = null,
 
     @Json(name = "updated_at")
-    val updatedAt: String,
+    val updatedAt: String? = null,
 
     @Json(name = "product_api_url")
-    val productAPIURL: String,
+    val productAPIURL: String? = null,
 
     @Json(name = "api_featured_image")
-    val apiFeaturedImage: String,
+    val apiFeaturedImage: String? = null,
 
     @Json(name = "product_colors")
-    val productColors: List<ProductColor>
+    val productColors: List<ProductColor>? = emptyList()
 ) {
     companion object {
         val products = listOf<Product>(

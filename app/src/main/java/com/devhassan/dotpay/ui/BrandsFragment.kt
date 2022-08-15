@@ -1,14 +1,23 @@
-package com.devhassan.dotpay
+package com.devhassan.dotpay.ui
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
+import android.view.View.INVISIBLE
+import android.view.View.VISIBLE
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
+import com.devhassan.dotpay.model.Brand
+import com.devhassan.dotpay.BrandAdapter
+import com.devhassan.dotpay.model.Product
+import com.devhassan.dotpay.Utils
 import com.devhassan.dotpay.databinding.FragmentBrandsBinding
+import com.devhassan.dotpay.model.uistate.AppUIState
+import com.devhassan.dotpay.vm.AppViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -18,6 +27,7 @@ class BrandsFragment : Fragment() {
     private var _binding: FragmentBrandsBinding? = null
     private val binding get() = _binding!!
     private lateinit var brandAdapter: BrandAdapter
+    private val viewModel: AppViewModel by activityViewModels()
 
     @Inject
     lateinit var utils: Utils
@@ -33,6 +43,7 @@ class BrandsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initBrandAdapter()
+        observeViewModel()
     }
 
     private fun initBrandAdapter() {
@@ -44,6 +55,7 @@ class BrandsFragment : Fragment() {
                     "Brand ${itemAtPosition.name} $position clicked",
                     Toast.LENGTH_LONG
                 ).show()
+                viewModel.updateSelectedBrand(itemAtPosition.name)
                 val action = BrandsFragmentDirections.actionBrandsFragmentToProductTypeFragment()
                 findNavController().navigate(action)
             },
@@ -60,14 +72,48 @@ class BrandsFragment : Fragment() {
         brandAdapter.stateRestorationPolicy =
             RecyclerView.Adapter.StateRestorationPolicy.PREVENT_WHEN_EMPTY
         binding.brandRV.adapter = brandAdapter
-        brandAdapter.submitList(
-            listOf(
-                Brand("My brand", Product.products),
-                Brand("Our brand", Product.products.dropLast(17)),
-                Brand("Your brand", Product.products),
-                Brand("Her brand", Product.products.dropLast(14))
-            )
-        )
+
+    }
+
+    private fun observeViewModel() {
+        viewModel.appUIState.observe(viewLifecycleOwner) { appUiState ->
+            when (appUiState) {
+                is AppUIState.Loading -> {
+                    showLoadingIcon(true)
+                }
+                is AppUIState.Error -> {
+                    Toast.makeText(requireContext(), appUiState.errorMessage, Toast.LENGTH_LONG)
+                        .show()
+                    showLoadingIcon(false)
+                }
+                is AppUIState.Success -> {
+                    val brandFragmentUIState = appUiState.brandFragmentUIState
+                    if (brandFragmentUIState?.brands.isNullOrEmpty()) {
+                        if (!brandFragmentUIState?.errorMessage.isNullOrEmpty()) {
+                            Toast.makeText(
+                                requireContext(),
+                                brandFragmentUIState?.errorMessage,
+                                Toast.LENGTH_LONG
+                            ).show()
+                        }
+                    } else {
+                        brandAdapter.submitList(appUiState.brandFragmentUIState?.brands)
+                    }
+                    showLoadingIcon(false)
+                }
+            }
+
+        }
+    }
+
+    private fun showLoadingIcon(bool: Boolean) {
+        if (bool) {
+            binding.progressIndicator.visibility = VISIBLE
+            binding.brandRV.visibility = INVISIBLE
+        } else {
+            binding.progressIndicator.visibility = INVISIBLE
+            binding.brandRV.visibility = VISIBLE
+        }
     }
 
     override fun onDestroy() {

@@ -1,7 +1,8 @@
-package com.devhassan.dotpay
+package com.devhassan.dotpay.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.devhassan.dotpay.R
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

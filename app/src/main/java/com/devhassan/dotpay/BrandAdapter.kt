@@ -9,6 +9,8 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.HORIZONTAL
 import androidx.recyclerview.widget.RecyclerView.RecycledViewPool
 import com.devhassan.dotpay.databinding.LayoutBrandItemBinding
+import com.devhassan.dotpay.model.Brand
+import com.devhassan.dotpay.model.Product
 import timber.log.Timber
 
 

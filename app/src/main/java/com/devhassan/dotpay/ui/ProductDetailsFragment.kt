@@ -1,4 +1,4 @@
-package com.devhassan.dotpay
+package com.devhassan.dotpay.ui
 
 import android.os.Bundle
 import android.util.DisplayMetrics

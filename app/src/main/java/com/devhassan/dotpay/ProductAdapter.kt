@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.devhassan.dotpay.databinding.LayoutGridProductItemBinding
 import com.devhassan.dotpay.databinding.LayoutHorizontalProductItemBinding
+import com.devhassan.dotpay.model.Product
 import timber.log.Timber
 
 class ProductAdapter(

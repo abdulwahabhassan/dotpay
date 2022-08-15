@@ -3,6 +3,7 @@
     package="com.devhassan.dotpay">
 
     <!-- permission to use internet -->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
@@ -12,9 +13,10 @@
         android:label="@string/app_name"
         android:roundIcon="@drawable/ic_dot_pay_logo"
         android:supportsRtl="true"
-        android:theme="@style/Theme.DotPay">
+        android:theme="@style/Theme.DotPay"
+        android:usesCleartextTraffic="true">
         <activity
-            android:name=".MainActivity"
+            android:name=".ui.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

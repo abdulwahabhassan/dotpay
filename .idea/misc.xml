@@ -20,6 +20,8 @@
         <entry key="app/src/main/res/layout/layout_horizontal_product_item.xml" value="0.2953125" />
         <entry key="app/src/main/res/layout/layout_product_item.xml" value="0.25" />
         <entry key="app/src/main/res/layout/layout_product_type_item.xml" value="0.2484375" />
+        <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.133" />
+        <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.133" />
       </map>
     </option>
   </component>

@@ -1,4 +1,4 @@
-package com.devhassan.dotpay
+package com.devhassan.dotpay.ui
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -9,6 +9,9 @@ import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.setupWithNavController
 import androidx.recyclerview.widget.RecyclerView
+import com.devhassan.dotpay.model.Product
+import com.devhassan.dotpay.ProductAdapter
+import com.devhassan.dotpay.Utils
 import com.devhassan.dotpay.databinding.FragmentProductsBinding
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject

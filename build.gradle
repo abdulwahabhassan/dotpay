@@ -24,4 +24,7 @@ ext {
     data_store_version = '1.0.0'
     room_version = '2.4.1'
     room_ktx_runtime_version = '2.4.3'
+    retrofit = '2.9.0'
+    logger_interceptor = '5.0.0-alpha.3'
+    moshi_converter = '2.4.0'
 }

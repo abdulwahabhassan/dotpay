@@ -1,4 +1,4 @@
-package com.devhassan.dotpay
+package com.devhassan.dotpay.model
 
 import com.squareup.moshi.Json
 
