@@ -15,7 +15,7 @@ import com.devhassan.dotpay.Utils
 import com.devhassan.dotpay.databinding.LayoutGridProductItemBinding
 import com.devhassan.dotpay.databinding.LayoutHorizontalProductItemBinding
 import com.devhassan.dotpay.glide.GlideImageLoader
-import com.devhassan.dotpay.model.Product
+import com.devhassan.dotpay.model.entity.Product
 import timber.log.Timber
 import java.util.*
 

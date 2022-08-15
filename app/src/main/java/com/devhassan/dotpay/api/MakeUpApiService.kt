@@ -1,6 +1,6 @@
-package com.devhassan.dotpay
+package com.devhassan.dotpay.api
 
-import com.devhassan.dotpay.model.Product
+import com.devhassan.dotpay.model.entity.Product
 import retrofit2.http.*
 
 interface MakeUpApiService {

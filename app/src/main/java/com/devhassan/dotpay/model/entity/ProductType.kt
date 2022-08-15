@@ -1,4 +1,4 @@
-package com.devhassan.dotpay.model
+package com.devhassan.dotpay.model.entity
 
 data class ProductType(
     val name: String,

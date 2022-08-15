@@ -6,7 +6,6 @@ import android.util.DisplayMetrics
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
@@ -18,7 +17,7 @@ import com.devhassan.dotpay.R
 import com.devhassan.dotpay.Utils
 import com.devhassan.dotpay.databinding.FragmentProductDetailsBinding
 import com.devhassan.dotpay.glide.GlideImageLoader
-import com.devhassan.dotpay.model.Product
+import com.devhassan.dotpay.model.entity.Product
 import com.devhassan.dotpay.model.uistate.AppUIState
 import com.devhassan.dotpay.vm.AppViewModel
 import com.google.android.material.bottomsheet.BottomSheetBehavior

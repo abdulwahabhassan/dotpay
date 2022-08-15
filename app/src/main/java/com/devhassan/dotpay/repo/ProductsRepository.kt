@@ -1,8 +1,8 @@
 package com.devhassan.dotpay.repo
 
-import com.devhassan.dotpay.APIResponse
-import com.devhassan.dotpay.NetworkConnectivityManager
-import com.devhassan.dotpay.adapter.RemoteDataSource
+import com.devhassan.dotpay.api.APIResponse
+import com.devhassan.dotpay.network.NetworkConnectivityManager
+import com.devhassan.dotpay.datasource.RemoteDataSource
 import com.devhassan.dotpay.model.result.ApiResult
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.withContext

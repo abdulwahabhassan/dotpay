@@ -1,4 +1,4 @@
-package com.devhassan.dotpay
+package com.devhassan.dotpay.network
 
 import android.content.Context
 import android.net.ConnectivityManager
@@ -7,8 +7,6 @@ import android.os.Build
 import timber.log.Timber
 import javax.inject.Inject
 
-// This class manages internet connectivity between the android device and cellular, wi-fi or ethernet
-// network
 @Suppress("DEPRECATION")
 class NetworkConnectivityManager @Inject constructor (
     private val context: Context

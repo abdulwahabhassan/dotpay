@@ -1,7 +1,7 @@
 package com.devhassan.dotpay.di
 
 import android.content.Context
-import com.devhassan.dotpay.NetworkConnectivityManager
+import com.devhassan.dotpay.network.NetworkConnectivityManager
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

@@ -1,6 +1,6 @@
-package com.devhassan.dotpay
+package com.devhassan.dotpay.network
 
-import okhttp3.Interceptor
+import com.devhassan.dotpay.api.Api
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit

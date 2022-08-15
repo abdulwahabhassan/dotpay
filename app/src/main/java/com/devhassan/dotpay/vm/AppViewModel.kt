@@ -3,7 +3,9 @@ package com.devhassan.dotpay.vm
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.devhassan.dotpay.model.*
+import com.devhassan.dotpay.model.entity.Brand
+import com.devhassan.dotpay.model.entity.Product
+import com.devhassan.dotpay.model.entity.ProductType
 import com.devhassan.dotpay.model.uistate.*
 import com.devhassan.dotpay.repo.ProductsRepository
 import dagger.hilt.android.lifecycle.HiltViewModel

@@ -1,6 +1,6 @@
 package com.devhassan.dotpay.model.uistate
 
-import com.devhassan.dotpay.model.Product
+import com.devhassan.dotpay.model.entity.Product
 
 data class ProductFragmentUIState(
     val products: List<Product>? = null,

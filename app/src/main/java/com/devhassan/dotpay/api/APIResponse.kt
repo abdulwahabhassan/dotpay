@@ -1,6 +1,6 @@
-package com.devhassan.dotpay
+package com.devhassan.dotpay.api
 
-import com.devhassan.dotpay.model.Product
+import com.devhassan.dotpay.model.entity.Product
 
 data class APIResponse(
     var status: Boolean = false,

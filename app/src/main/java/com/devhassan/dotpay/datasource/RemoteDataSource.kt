@@ -1,7 +1,7 @@
-package com.devhassan.dotpay.adapter
+package com.devhassan.dotpay.datasource
 
-import com.devhassan.dotpay.MakeUpApiService
-import com.devhassan.dotpay.model.Product
+import com.devhassan.dotpay.api.MakeUpApiService
+import com.devhassan.dotpay.model.entity.Product
 import javax.inject.Inject
 
 class RemoteDataSource @Inject constructor(

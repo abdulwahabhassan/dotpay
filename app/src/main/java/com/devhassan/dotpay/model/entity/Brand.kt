@@ -1,4 +1,4 @@
-package com.devhassan.dotpay.model
+package com.devhassan.dotpay.model.entity
 
 data class Brand(
     val name: String,

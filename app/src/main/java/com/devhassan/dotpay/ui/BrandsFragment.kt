@@ -1,28 +1,25 @@
 package com.devhassan.dotpay.ui
 
 import android.os.Bundle
-import android.os.Message
 import android.view.LayoutInflater
 import android.view.View
 import android.view.View.INVISIBLE
 import android.view.View.VISIBLE
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.devhassan.dotpay.R
-import com.devhassan.dotpay.model.Brand
+import com.devhassan.dotpay.model.entity.Brand
 import com.devhassan.dotpay.adapter.BrandAdapter
-import com.devhassan.dotpay.model.Product
+import com.devhassan.dotpay.model.entity.Product
 import com.devhassan.dotpay.Utils
 import com.devhassan.dotpay.databinding.FragmentBrandsBinding
 import com.devhassan.dotpay.model.uistate.AppUIState
 import com.devhassan.dotpay.vm.AppViewModel
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
-import timber.log.Timber
 import www.sanju.motiontoast.MotionToastStyle
 import javax.inject.Inject
 
