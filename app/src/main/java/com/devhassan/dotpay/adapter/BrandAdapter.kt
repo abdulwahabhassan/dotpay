@@ -13,6 +13,7 @@ import com.devhassan.dotpay.databinding.LayoutBrandItemBinding
 import com.devhassan.dotpay.model.entity.Brand
 import com.devhassan.dotpay.model.entity.Product
 import timber.log.Timber
+import java.util.*
 
 
 class BrandAdapter(
@@ -74,7 +75,11 @@ class BrandAdapter(
         fun bind(brand: Brand) {
             Timber.d("$brand")
             with(binding) {
-                brandNameTV.text = brand.name
+                brandNameTV.text = brand.name.replace(Regex("\\W"), " ")
+                    .trim()
+                    .replaceFirstChar {
+                        if (it.isLowerCase()) it.titlecase(Locale.getDefault()) else it.toString()
+                    }
 
                 val layoutManager = LinearLayoutManager(root.context, HORIZONTAL, false)
                 layoutManager.initialPrefetchItemCount = brand.products.size

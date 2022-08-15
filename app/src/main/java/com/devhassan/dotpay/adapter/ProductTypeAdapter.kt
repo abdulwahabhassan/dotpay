@@ -11,6 +11,7 @@ import com.devhassan.dotpay.databinding.LayoutProductTypeItemBinding
 import com.devhassan.dotpay.model.entity.Product
 import com.devhassan.dotpay.model.entity.ProductType
 import timber.log.Timber
+import java.util.*
 
 class ProductTypeAdapter(
     private val utils: Utils,
@@ -69,7 +70,11 @@ class ProductTypeAdapter(
         fun bind(productType: ProductType) {
             Timber.d("$productType")
             with(binding) {
-                productTypeNameTV.text = productType.name
+                productTypeNameTV.text = productType.name.replace(Regex("\\W"), " ")
+                    .trim()
+                    .replaceFirstChar {
+                        if (it.isLowerCase()) it.titlecase(Locale.getDefault()) else it.toString()
+                    }
 
                 val layoutManager =
                     LinearLayoutManager(root.context, RecyclerView.HORIZONTAL, false)

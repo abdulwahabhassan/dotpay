@@ -37,6 +37,7 @@
             android:drawablePadding="4dp"
             android:textColor="@color/black"
             android:layout_gravity="center"
+            android:textSize="12sp"
             android:background="@drawable/bg_button"
             app:drawableEndCompat="@drawable/ic_double_arrow_right" />
     </androidx.appcompat.widget.LinearLayoutCompat>

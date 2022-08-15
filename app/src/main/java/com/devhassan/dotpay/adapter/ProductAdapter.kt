@@ -129,6 +129,9 @@ class ProductAdapter(
                 }
                 productNameTV.text = product.name?.replace(Regex("\\W"), " ")
                     ?.trim()
+                    ?.replaceFirstChar {
+                        if (it.isLowerCase()) it.titlecase(Locale.getDefault()) else it.toString()
+                    }
                 productDescriptionTV.text = product.description
                     ?.replace(Regex("\\W"), " ")?.trim()
                     ?.replaceFirstChar {
@@ -175,6 +178,9 @@ class ProductAdapter(
                 }
                 productNameTV.text = product.name?.replace(Regex("\\W"), " ")
                     ?.trim()
+                    ?.replaceFirstChar {
+                        if (it.isLowerCase()) it.titlecase(Locale.getDefault()) else it.toString()
+                    }
                 productDescriptionTV.text = product.description
                     ?.replace(Regex("\\W"), " ")?.trim()
                     ?.replaceFirstChar {
