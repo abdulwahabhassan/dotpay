@@ -11,12 +11,13 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.setupWithNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.devhassan.dotpay.model.Product
-import com.devhassan.dotpay.ProductAdapter
+import com.devhassan.dotpay.adapter.ProductAdapter
 import com.devhassan.dotpay.Utils
 import com.devhassan.dotpay.databinding.FragmentProductsBinding
 import com.devhassan.dotpay.model.uistate.AppUIState
 import com.devhassan.dotpay.vm.AppViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import www.sanju.motiontoast.MotionToastStyle
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -50,11 +51,6 @@ class ProductsFragment : Fragment() {
             viewType = ProductAdapter.ProductAdapterViewType.GRID_VIEW_TYPE,
             utils = utils,
             onProductClicked = { position: Int, itemAtPosition: Product ->
-                Toast.makeText(
-                    requireContext(),
-                    "Product ${itemAtPosition.name} $position clicked",
-                    Toast.LENGTH_LONG
-                ).show()
                 viewModel.updateCurrentProduct(itemAtPosition)
                 val action = ProductsFragmentDirections.actionProductsFragmentToProductDetailsFragment()
                 findNavController().navigate(action)
@@ -72,19 +68,22 @@ class ProductsFragment : Fragment() {
                     showLoadingIcon(true)
                 }
                 is AppUIState.Error -> {
-                    Toast.makeText(requireContext(), appUiState.errorMessage, Toast.LENGTH_LONG)
-                        .show()
                     showLoadingIcon(false)
+                    utils.showMotionToast(
+                        requireActivity(),
+                        appUiState.errorMessage,
+                        MotionToastStyle.ERROR
+                    )
                 }
                 is AppUIState.Success -> {
                     val productsFragmentUIState = appUiState.productFragmentUIState
                     if (productsFragmentUIState?.products.isNullOrEmpty()) {
                         if (!productsFragmentUIState?.errorMessage.isNullOrEmpty()) {
-                            Toast.makeText(
-                                requireContext(),
+                            utils.showMotionToast(
+                                requireActivity(),
                                 productsFragmentUIState?.errorMessage,
-                                Toast.LENGTH_LONG
-                            ).show()
+                                MotionToastStyle.INFO
+                            )
                         }
                     } else {
                         productAdapter.submitList(productsFragmentUIState?.products)

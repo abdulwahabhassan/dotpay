@@ -11,8 +11,6 @@ import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import javax.inject.Singleton
 
-// Automatically provide these dependencies where needed in the app (with respect to their scope)
-// using hilt's dependency injection framework
 @Module
 @InstallIn(SingletonComponent::class)
 object NetworkModule {

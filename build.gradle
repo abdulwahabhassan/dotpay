@@ -27,4 +27,5 @@ ext {
     retrofit = '2.9.0'
     logger_interceptor = '5.0.0-alpha.3'
     moshi_converter = '2.4.0'
+    motion_toast = '1.4'
 }

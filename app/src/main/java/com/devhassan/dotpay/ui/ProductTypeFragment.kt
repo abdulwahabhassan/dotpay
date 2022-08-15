@@ -12,12 +12,13 @@ import androidx.navigation.ui.setupWithNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.devhassan.dotpay.model.Product
 import com.devhassan.dotpay.model.ProductType
-import com.devhassan.dotpay.ProductTypeAdapter
+import com.devhassan.dotpay.adapter.ProductTypeAdapter
 import com.devhassan.dotpay.Utils
 import com.devhassan.dotpay.databinding.FragmentProductTypeBinding
 import com.devhassan.dotpay.model.uistate.AppUIState
 import com.devhassan.dotpay.vm.AppViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import www.sanju.motiontoast.MotionToastStyle
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -50,22 +51,15 @@ class ProductTypeFragment : Fragment() {
         productTypeAdapter = ProductTypeAdapter(
             utils = utils,
             onSeeMoreClicked = { position: Int, itemAtPosition: ProductType ->
-                Toast.makeText(
-                    requireContext(),
-                    "Brand ${itemAtPosition.name} $position clicked",
-                    Toast.LENGTH_LONG
-                ).show()
                 viewModel.updateSelectedProductType(itemAtPosition.name)
-                val action = ProductTypeFragmentDirections.actionProductTypeFragmentToProductsFragment()
+                val action =
+                    ProductTypeFragmentDirections.actionProductTypeFragmentToProductsFragment()
                 findNavController().navigate(action)
             },
             onProductClicked = { position: Int, itemAtPosition: Product ->
-                Toast.makeText(
-                    requireContext(),
-                    "Product ${itemAtPosition.name} $position clicked",
-                    Toast.LENGTH_LONG
-                ).show()
-                val action = ProductTypeFragmentDirections.actionProductTypeFragmentToProductDetailsFragment()
+                viewModel.updateCurrentProduct(itemAtPosition)
+                val action =
+                    ProductTypeFragmentDirections.actionProductTypeFragmentToProductDetailsFragment()
                 findNavController().navigate(action)
             }
         )
@@ -81,19 +75,22 @@ class ProductTypeFragment : Fragment() {
                     showLoadingIcon(true)
                 }
                 is AppUIState.Error -> {
-                    Toast.makeText(requireContext(), appUiState.errorMessage, Toast.LENGTH_LONG)
-                        .show()
                     showLoadingIcon(false)
+                    utils.showMotionToast(
+                        requireActivity(),
+                        appUiState.errorMessage,
+                        MotionToastStyle.ERROR
+                    )
                 }
                 is AppUIState.Success -> {
                     val productTypeFragmentUIState = appUiState.productTypeFragmentUIState
                     if (productTypeFragmentUIState?.productTypes.isNullOrEmpty()) {
                         if (!productTypeFragmentUIState?.errorMessage.isNullOrEmpty()) {
-                            Toast.makeText(
-                                requireContext(),
+                            utils.showMotionToast(
+                                requireActivity(),
                                 productTypeFragmentUIState?.errorMessage,
-                                Toast.LENGTH_LONG
-                            ).show()
+                                MotionToastStyle.INFO
+                            )
                         }
                     } else {
                         productTypeAdapter.submitList(productTypeFragmentUIState?.productTypes)

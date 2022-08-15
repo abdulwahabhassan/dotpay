@@ -1,4 +1,4 @@
-package com.devhassan.dotpay
+package com.devhassan.dotpay.adapter
 
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
@@ -10,6 +10,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.request.RequestOptions
+import com.devhassan.dotpay.R
+import com.devhassan.dotpay.Utils
 import com.devhassan.dotpay.databinding.LayoutGridProductItemBinding
 import com.devhassan.dotpay.databinding.LayoutHorizontalProductItemBinding
 import com.devhassan.dotpay.glide.GlideImageLoader
@@ -171,7 +173,6 @@ class ProductAdapter(
                     }
                     photoProgressBar.visibility = View.GONE
                 }
-                productIV.setImageResource(R.drawable.ic_launcher_background)
                 productNameTV.text = product.name?.replace(Regex("\\W"), " ")
                     ?.trim()
                 productDescriptionTV.text = product.description

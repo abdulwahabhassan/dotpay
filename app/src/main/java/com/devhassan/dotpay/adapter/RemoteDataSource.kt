@@ -1,10 +1,9 @@
-package com.devhassan.dotpay.datasource
+package com.devhassan.dotpay.adapter
 
 import com.devhassan.dotpay.MakeUpApiService
 import com.devhassan.dotpay.model.Product
 import javax.inject.Inject
 
-// Manages all remote data sources that connect to various api services consumed by the app
 class RemoteDataSource @Inject constructor(
     private val makeUpApiService: MakeUpApiService
 ) {
@@ -12,6 +11,5 @@ class RemoteDataSource @Inject constructor(
     suspend fun getProducts(): List<Product> {
         return makeUpApiService.getProducts()
     }
-
 
 }

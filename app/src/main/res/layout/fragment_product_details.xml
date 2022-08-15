@@ -57,21 +57,37 @@
     </com.google.android.material.appbar.MaterialToolbar>
 
     <com.google.android.material.imageview.ShapeableImageView
-        android:id="@+id/productDetailsImagesVP"
+        android:id="@+id/productDetailsIV"
         android:layout_width="match_parent"
         android:layout_height="200dp"
         android:scaleType="fitCenter"
+        android:background="@color/gray"
+        app:tintMode="multiply"
+        android:paddingTop="16dp"
+        android:tint="@color/gray"
         app:layout_anchor="@id/productDetailsMaterialToolbar"
         app:layout_anchorGravity="bottom|center_horizontal"
         android:layout_gravity="bottom|center_horizontal"
-        android:clipChildren="false"
-        android:clipToPadding="false"
-        android:paddingStart="50dp"
-        android:paddingEnd="50dp"
-        android:src="@mipmap/ic_launcher"
+        tools:src="@mipmap/ic_launcher"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/productDetailsMaterialToolbar" />
+
+    <com.google.android.material.progressindicator.CircularProgressIndicator
+        android:id="@+id/photoProgressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:indicatorColor="@color/black"
+        app:indicatorSize="32dp"
+        app:layout_anchor="@id/productDetailsIV"
+        app:layout_anchorGravity="center"
+        android:layout_gravity="center"
+        app:layout_constraintBottom_toBottomOf="@+id/productIV"
+        app:layout_constraintEnd_toEndOf="@+id/productIV"
+        app:layout_constraintStart_toStartOf="@+id/productIV"
+        app:layout_constraintTop_toTopOf="@+id/productIV"
+        app:trackColor="@color/gray"
+        app:trackThickness="2dp" />
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -91,6 +107,30 @@
             app:layout_constraintStart_toStartOf="parent"
             >
 
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:src="@drawable/ic_bottom_sheet_handle"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <com.google.android.material.progressindicator.CircularProgressIndicator
+                android:id="@+id/progressIndicator"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="19dp"
+                android:indeterminate="true"
+                android:visibility="visible"
+                app:indicatorColor="@color/black"
+                app:layout_constraintBottom_toBottomOf="@+id/productExtraDetailsTV"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imageView"
+                app:trackColor="@color/gray" />
+
             <TextView
                 android:id="@+id/productDetailsNameTV"
                 android:layout_width="0dp"
@@ -98,10 +138,10 @@
                 android:layout_marginHorizontal="16dp"
                 android:ellipsize="end"
                 android:fontFamily="@font/roboto_bold"
-                android:maxLines="1"
                 android:textColor="@color/black"
                 android:textSize="16sp"
                 android:textStyle="bold"
+                android:visibility="invisible"
                 app:layout_constraintEnd_toStartOf="@+id/productDetailsRB"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
@@ -117,11 +157,12 @@
                 android:fontFamily="@font/roboto_bold"
                 android:textColor="@color/black"
                 android:textSize="18sp"
-                android:textStyle="bold"
                 android:layout_marginTop="24dp"
+                android:textStyle="bold"
+                android:visibility="invisible"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imageView"
                 tools:text="$9.90" />
 
             <TextView
@@ -131,7 +172,7 @@
                 android:layout_marginTop="4dp"
                 android:ellipsize="end"
                 android:fontFamily="@font/roboto_medium"
-                android:maxLines="2"
+                android:visibility="invisible"
                 app:layout_constraintEnd_toEndOf="@+id/productDetailsRB"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="@+id/productDetailsNameTV"
@@ -144,8 +185,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="16dp"
-                tools:progress="75"
-                android:max="100"
+                tools:progress="2"
+                android:max="5"
+                android:visibility="invisible"
                 android:progressTint="@color/purple_500"
                 android:isIndicator="true"
                 app:layout_constraintBottom_toTopOf="@+id/productExtraDetailsTV"

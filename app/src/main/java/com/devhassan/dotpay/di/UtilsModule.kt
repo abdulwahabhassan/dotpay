@@ -1,4 +1,4 @@
-package com.peng.di
+package com.devhassan.dotpay.di
 
 import com.devhassan.dotpay.Utils
 import dagger.Module

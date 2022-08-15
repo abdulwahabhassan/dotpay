@@ -1,6 +1,7 @@
 package com.devhassan.dotpay.ui
 
 import android.os.Bundle
+import android.os.Message
 import android.view.LayoutInflater
 import android.view.View
 import android.view.View.INVISIBLE
@@ -11,14 +12,18 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
+import com.devhassan.dotpay.R
 import com.devhassan.dotpay.model.Brand
-import com.devhassan.dotpay.BrandAdapter
+import com.devhassan.dotpay.adapter.BrandAdapter
 import com.devhassan.dotpay.model.Product
 import com.devhassan.dotpay.Utils
 import com.devhassan.dotpay.databinding.FragmentBrandsBinding
 import com.devhassan.dotpay.model.uistate.AppUIState
 import com.devhassan.dotpay.vm.AppViewModel
+import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
+import timber.log.Timber
+import www.sanju.motiontoast.MotionToastStyle
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -50,21 +55,12 @@ class BrandsFragment : Fragment() {
         brandAdapter = BrandAdapter(
             utils = utils,
             onSeeMoreClicked = { position: Int, itemAtPosition: Brand ->
-                Toast.makeText(
-                    requireContext(),
-                    "Brand ${itemAtPosition.name} $position clicked",
-                    Toast.LENGTH_LONG
-                ).show()
                 viewModel.updateSelectedBrand(itemAtPosition.name)
                 val action = BrandsFragmentDirections.actionBrandsFragmentToProductTypeFragment()
                 findNavController().navigate(action)
             },
             onProductClicked = { position: Int, itemAtPosition: Product ->
-                Toast.makeText(
-                    requireContext(),
-                    "Product ${itemAtPosition.name} $position clicked",
-                    Toast.LENGTH_LONG
-                ).show()
+                viewModel.updateCurrentProduct(itemAtPosition)
                 val action = BrandsFragmentDirections.actionBrandsFragmentToProductDetailsFragment()
                 findNavController().navigate(action)
             }
@@ -80,30 +76,44 @@ class BrandsFragment : Fragment() {
             when (appUiState) {
                 is AppUIState.Loading -> {
                     showLoadingIcon(true)
+                    showErrorText(false)
                 }
                 is AppUIState.Error -> {
-                    Toast.makeText(requireContext(), appUiState.errorMessage, Toast.LENGTH_LONG)
-                        .show()
                     showLoadingIcon(false)
+                    utils.showMotionToast(
+                        requireActivity(),
+                        appUiState.errorMessage,
+                        MotionToastStyle.ERROR
+                    )
+                    showErrorText(true)
+                    showSnackBar()
                 }
                 is AppUIState.Success -> {
                     val brandFragmentUIState = appUiState.brandFragmentUIState
                     if (brandFragmentUIState?.brands.isNullOrEmpty()) {
                         if (!brandFragmentUIState?.errorMessage.isNullOrEmpty()) {
-                            Toast.makeText(
-                                requireContext(),
+                            utils.showMotionToast(
+                                requireActivity(),
                                 brandFragmentUIState?.errorMessage,
-                                Toast.LENGTH_LONG
-                            ).show()
+                                MotionToastStyle.INFO
+                            )
                         }
                     } else {
                         brandAdapter.submitList(appUiState.brandFragmentUIState?.brands
                             ?.sortedBy { it.name })
                     }
                     showLoadingIcon(false)
+                    showErrorText(false)
                 }
             }
+        }
+    }
 
+    private fun showErrorText(bool: Boolean) {
+        if (bool) {
+            binding.errorTV.visibility = VISIBLE
+        } else {
+            binding.errorTV.visibility = INVISIBLE
         }
     }
 
@@ -115,6 +125,23 @@ class BrandsFragment : Fragment() {
             binding.progressIndicator.visibility = INVISIBLE
             binding.brandRV.visibility = VISIBLE
         }
+    }
+
+    private fun showSnackBar() {
+        Snackbar.make(
+            binding.root,
+            "Error in communication!",
+            Snackbar.LENGTH_LONG
+        ).setTextColor(requireContext().getColor(R.color.white))
+            .setActionTextColor(requireContext().getColor(R.color.white))
+            .setBackgroundTint(requireContext().getColor(R.color.black))
+            .setDuration(Snackbar.LENGTH_INDEFINITE)
+            .setAction("Retry") {
+                showErrorText(false)
+                showLoadingIcon(true)
+                viewModel.retrieveProducts()
+            }
+            .show()
     }
 
     override fun onDestroy() {

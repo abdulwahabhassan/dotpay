@@ -1,4 +1,4 @@
-package com.devhassan.dotpay
+package com.devhassan.dotpay.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.devhassan.dotpay.Utils
 import com.devhassan.dotpay.databinding.LayoutProductTypeItemBinding
 import com.devhassan.dotpay.model.Product
 import com.devhassan.dotpay.model.ProductType

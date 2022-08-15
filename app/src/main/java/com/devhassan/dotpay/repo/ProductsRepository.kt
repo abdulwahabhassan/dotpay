@@ -2,7 +2,7 @@ package com.devhassan.dotpay.repo
 
 import com.devhassan.dotpay.APIResponse
 import com.devhassan.dotpay.NetworkConnectivityManager
-import com.devhassan.dotpay.datasource.RemoteDataSource
+import com.devhassan.dotpay.adapter.RemoteDataSource
 import com.devhassan.dotpay.model.result.ApiResult
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.withContext
@@ -24,7 +24,7 @@ class ProductsRepository @Inject constructor(
             }
             is ApiResult.Error -> {
                 Timber.d("$apiResult")
-                APIResponse(status = true, message = apiResult.message)
+                APIResponse(status = false, message = apiResult.message)
             }
         }
     }

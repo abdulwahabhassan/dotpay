@@ -77,4 +77,6 @@ dependencies {
     implementation "com.squareup.okhttp3:logging-interceptor:$logger_interceptor"
     //Moshi converter
     implementation "com.squareup.retrofit2:converter-moshi:$moshi_converter"
+    //MotionToast
+    implementation "com.github.Spikeysanju:MotionToast:$motion_toast"
 }

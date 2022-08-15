@@ -9,10 +9,12 @@
         <entry key="app/src/main/res/drawable/bg_profile_edit_bottom_sheet_dialog.xml" value="0.141" />
         <entry key="app/src/main/res/drawable/ic_arrow_back.xml" value="0.133" />
         <entry key="app/src/main/res/drawable/ic_arrow_right.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable/ic_bottom_sheet_handle.xml" value="0.1375" />
+        <entry key="app/src/main/res/drawable/ic_broken_image.xml" value="0.1375" />
         <entry key="app/src/main/res/drawable/ic_double_arrow_right.xml" value="0.1615" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.2953125" />
-        <entry key="app/src/main/res/layout/fragment_brands.xml" value="0.2953125" />
-        <entry key="app/src/main/res/layout/fragment_product_details.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/fragment_brands.xml" value="0.165" />
+        <entry key="app/src/main/res/layout/fragment_product_details.xml" value="0.165" />
         <entry key="app/src/main/res/layout/fragment_product_type.xml" value="0.28125" />
         <entry key="app/src/main/res/layout/fragment_products.xml" value="0.25" />
         <entry key="app/src/main/res/layout/layout_brand_item.xml" value="0.335" />
