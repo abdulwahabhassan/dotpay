@@ -9,10 +9,7 @@ import com.devhassan.dotpay.model.entity.ProductType
 import com.devhassan.dotpay.model.uistate.*
 import com.devhassan.dotpay.repo.ProductsRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.collectLatest
-import kotlinx.coroutines.flow.combine
-import kotlinx.coroutines.flow.flowOf
+import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import timber.log.Timber
 import javax.inject.Inject
@@ -38,7 +35,8 @@ class AppViewModel @Inject constructor(
     fun retrieveProducts() {
         viewModelScope.launch {
             combine(
-                flowOf(transactionsRepository.fetchProducts()),
+                flowOf(transactionsRepository.fetchProducts())
+                    .shareIn(viewModelScope, SharingStarted.WhileSubscribed()),
                 _selectedBrand,
                 _selectedProductType,
                 _selectedProduct
