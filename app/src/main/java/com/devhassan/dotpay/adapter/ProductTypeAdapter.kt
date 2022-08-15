@@ -30,8 +30,6 @@ class ProductTypeAdapter(
 
 }) {
 
-    private val viewPool = RecyclerView.RecycledViewPool()
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProductTypeVH {
         val binding =
             LayoutProductTypeItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -88,7 +86,6 @@ class ProductTypeAdapter(
                     onProductClicked(position, itemAtPosition)
                 }
                 productTypeProductsRV.adapter = productAdapter
-                productTypeProductsRV.setRecycledViewPool(viewPool)
                 productAdapter.submitList(productType.products)
 
             }

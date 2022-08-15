@@ -138,8 +138,8 @@ class ProductAdapter(
                         if (it.isLowerCase()) it.titlecase(Locale.getDefault()) else it.toString()
                     }
                 productPriceTV.text =
-                    (product.priceSign ?: product.currency ?: "") + product.price?.let {
-                        utils.formatCurrency(it)
+                    (product.priceSign ?: product.currency ?: "") + product.price.let {
+                        if (it == null) "-" else utils.formatCurrency(it)
                     }
             }
         }
@@ -187,8 +187,8 @@ class ProductAdapter(
                         if (it.isLowerCase()) it.titlecase(Locale.getDefault()) else it.toString()
                     }
                 productPriceTV.text =
-                    (product.priceSign ?: product.currency ?: "") + product.price?.let {
-                        utils.formatCurrency(it)
+                    (product.priceSign ?: product.currency ?: "") + product.price.let {
+                        if (it == null) "-" else utils.formatCurrency(it)
                     }
             }
         }

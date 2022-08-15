@@ -110,7 +110,7 @@ class ProductDetailsFragment : Fragment() {
         binding.productDetailsNameTV.text = product.name?.replace(Regex("\\W"), " ")
             ?.trim()
         binding.productDetailsPriceTV.text = (product.priceSign ?: product.currency ?: "") +
-                product.price?.let { utils.formatCurrency(it) }
+                product.price.let { if (it == null) "-" else utils.formatCurrency(it) }
         binding.productExtraDetailsTV.text = product.description
             ?.replace(Regex("\\W"), " ")?.trim()
             ?.replaceFirstChar {
