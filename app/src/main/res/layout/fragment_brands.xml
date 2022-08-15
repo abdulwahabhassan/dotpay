@@ -17,12 +17,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="start">
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/productProfilePhotoIV"
             android:layout_width="50dp"
@@ -34,6 +28,18 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:shapeAppearanceOverlay="@style/imageview_shape_appearance_overlay_rounded_edges_20_percent" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:layout_marginEnd="80dp"
+            android:fontFamily="@font/roboto_bold"
+            android:maxLines="1"
+            android:textAlignment="center"
+            android:text="Brands"
+            android:textColor="@color/black"
+            android:textSize="16sp" />
 
     </com.google.android.material.appbar.MaterialToolbar>
 
