@@ -61,7 +61,7 @@
         android:layout_marginEnd="6dp"
         android:orientation="vertical"
         android:overScrollMode="never"
-        android:visibility="visible"
+        android:visibility="invisible"
         app:layoutManager="androidx.recyclerview.widget.StaggeredGridLayoutManager"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -70,5 +70,17 @@
         app:spanCount="3"
         tools:listitem="@layout/layout_grid_product_item" />
 
+    <com.google.android.material.progressindicator.CircularProgressIndicator
+        android:id="@+id/progressIndicator"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:indeterminate="true"
+        android:visibility="visible"
+        app:indicatorColor="@color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/productsMaterialToolbar"
+        app:trackColor="@color/gray" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -55,6 +55,7 @@ class ProductTypeFragment : Fragment() {
                     "Brand ${itemAtPosition.name} $position clicked",
                     Toast.LENGTH_LONG
                 ).show()
+                viewModel.updateSelectedProductType(itemAtPosition.name)
                 val action = ProductTypeFragmentDirections.actionProductTypeFragmentToProductsFragment()
                 findNavController().navigate(action)
             },

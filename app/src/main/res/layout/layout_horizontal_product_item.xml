@@ -2,8 +2,10 @@
 <androidx.cardview.widget.CardView xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_margin="8dp"
     app:cardCornerRadius="8dp"
+    app:cardElevation="5dp"
     xmlns:android="http://schemas.android.com/apk/res/android">
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="wrap_content"
@@ -11,30 +13,78 @@
 
         <ImageView
             android:id="@+id/productIV"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
             android:background="@color/black"
+            android:scaleType="center"
             android:src="@drawable/ic_launcher_foreground"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+        <com.google.android.material.progressindicator.CircularProgressIndicator
+            android:id="@+id/photoProgressBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:indicatorColor="@color/black"
+            app:indicatorSize="32dp"
+            app:layout_constraintBottom_toBottomOf="@+id/productIV"
+            app:layout_constraintEnd_toEndOf="@+id/productIV"
+            app:layout_constraintStart_toStartOf="@+id/productIV"
+            app:layout_constraintTop_toTopOf="@+id/productIV"
+            app:trackColor="@color/gray"
+            app:trackThickness="2dp" />
+
         <TextView
             android:id="@+id/productNameTV"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:ellipsize="end"
-            android:maxLines="1"
-            android:text="Some product"
-            android:textSize="12sp"
-            android:fontFamily="@font/roboto"
+            android:layout_marginHorizontal="8dp"
             android:layout_marginTop="8dp"
-            android:textAlignment="center"
+            android:ellipsize="end"
+            android:fontFamily="@font/roboto_medium"
+            android:maxLines="1"
+            tools:text="Some product"
             android:textColor="@color/black"
-            app:layout_constraintBottom_toBottomOf="parent"
-            android:layout_marginBottom="16dp"
+            android:textSize="13sp"
             app:layout_constraintEnd_toEndOf="@+id/productIV"
             app:layout_constraintStart_toStartOf="@+id/productIV"
             app:layout_constraintTop_toBottomOf="@+id/productIV" />
+
+        <TextView
+            android:id="@+id/productDescriptionTV"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="8dp"
+            android:ellipsize="end"
+            android:fontFamily="@font/roboto"
+            android:maxLines="2"
+            android:lines="2"
+            tools:text="Some product"
+            android:textColor="@color/black"
+            android:textSize="12sp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintEnd_toEndOf="@+id/productIV"
+            app:layout_constraintStart_toStartOf="@+id/productIV"
+            app:layout_constraintTop_toBottomOf="@+id/productNameTV" />
+
+        <TextView
+            android:id="@+id/productPriceTV"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="8dp"
+            android:ellipsize="end"
+            android:fontFamily="@font/roboto_bold"
+            android:maxLines="1"
+            android:layout_marginVertical="8dp"
+            tools:text="$40.00"
+            android:textAlignment="viewStart"
+            android:textColor="@color/black"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/productIV"
+            app:layout_constraintStart_toStartOf="@+id/productIV"
+            app:layout_constraintTop_toBottomOf="@+id/productDescriptionTV" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>

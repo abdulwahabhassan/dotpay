@@ -1,4 +1,4 @@
-package com.colley.android.glide
+package com.devhassan.dotpay.glide
 
 import android.content.Context
 import android.os.Handler
@@ -26,13 +26,11 @@ class ProgressAppGlideModule : AppGlideModule() {
                 val response: Response = chain.proceed(request)
                 val listener: ResponseProgressListener = DispatchingProgressListener()
                 response.newBuilder()
-                    .body(response.body()?.let {
-                        request.url()?.let { it1 ->
-                            OkHttpProgressResponseBody(
-                                it1,
-                                it, listener
-                            )
-                        }
+                    .body(response.body?.let {
+                        OkHttpProgressResponseBody(
+                            request.url,
+                            it, listener
+                        )
                     })
                     .build()
             }
@@ -120,11 +118,11 @@ class ProgressAppGlideModule : AppGlideModule() {
             return responseBody.contentLength()
         }
 
-        override fun source(): BufferedSource? {
+        override fun source(): BufferedSource {
             if (bufferedSource == null) {
-                bufferedSource = Okio.buffer(source(responseBody.source()))
+                bufferedSource = source(responseBody.source()).buffer()
             }
-            return bufferedSource
+            return bufferedSource as BufferedSource
         }
 
         private fun source(source: Source): Source {
@@ -132,7 +130,7 @@ class ProgressAppGlideModule : AppGlideModule() {
                 var totalBytesRead = 0L
 
                 @Throws(IOException::class)
-                override fun read(sink: Buffer?, byteCount: Long): Long {
+                override fun read(sink: Buffer, byteCount: Long): Long {
                     val bytesRead = super.read(sink!!, byteCount)
                     val fullLength: Long = responseBody.contentLength()
                     if (bytesRead == -1L) { // this source is exhausted

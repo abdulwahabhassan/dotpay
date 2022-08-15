@@ -97,7 +97,8 @@ class BrandsFragment : Fragment() {
                             ).show()
                         }
                     } else {
-                        brandAdapter.submitList(appUiState.brandFragmentUIState?.brands)
+                        brandAdapter.submitList(appUiState.brandFragmentUIState?.brands
+                            ?.sortedBy { it.name })
                     }
                     showLoadingIcon(false)
                 }

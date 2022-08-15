@@ -1,4 +1,4 @@
-package com.colley.android.glide
+package com.devhassan.dotpay.glide
 
 import android.graphics.drawable.Drawable
 import android.view.View

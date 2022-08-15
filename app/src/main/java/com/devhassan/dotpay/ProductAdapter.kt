@@ -1,15 +1,23 @@
 package com.devhassan.dotpay
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
+import com.bumptech.glide.request.RequestOptions
 import com.devhassan.dotpay.databinding.LayoutGridProductItemBinding
 import com.devhassan.dotpay.databinding.LayoutHorizontalProductItemBinding
+import com.devhassan.dotpay.glide.GlideImageLoader
 import com.devhassan.dotpay.model.Product
 import timber.log.Timber
+import java.util.*
 
+@SuppressLint("SetTextI18n")
 class ProductAdapter(
     private val viewType: ProductAdapterViewType,
     private val utils: Utils,
@@ -41,7 +49,8 @@ class ProductAdapter(
                     try {
                         val itemAtPosition = currentList[position]
                         this.onProductClicked(position, itemAtPosition)
-                    } catch (e: Exception) { }
+                    } catch (e: Exception) {
+                    }
                 })
             }
             ProductAdapterViewType.GRID_VIEW_TYPE.ordinal -> {
@@ -57,7 +66,8 @@ class ProductAdapter(
                         try {
                             val itemAtPosition = currentList[position]
                             this.onProductClicked(position, itemAtPosition)
-                        } catch (e: Exception) { }
+                        } catch (e: Exception) {
+                        }
                     }
                 )
             }
@@ -97,9 +107,35 @@ class ProductAdapter(
 
         fun bind(product: Product) {
             Timber.d("$product")
+
             with(binding) {
-                productIV.setImageResource(R.drawable.ic_launcher_background)
-                productNameTV.text = product.name
+                val options = RequestOptions()
+                    .error(R.drawable.ic_broken_image)
+                    .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
+
+                //using custom glide image loader to indicate progress in time
+                val photoUrl = product.imageLink ?: product.apiFeaturedImage
+
+                if (photoUrl != null) {
+                    GlideImageLoader(productIV, photoProgressBar).load(photoUrl, options)
+                } else {
+                    productIV.let {
+                        Glide.with(root.context).load(R.drawable.ic_broken_image)
+                            .into(it)
+                    }
+                    photoProgressBar.visibility = View.GONE
+                }
+                productNameTV.text = product.name?.replace(Regex("\\W"), " ")
+                    ?.trim()
+                productDescriptionTV.text = product.description
+                    ?.replace(Regex("\\W"), " ")?.trim()
+                    ?.replaceFirstChar {
+                        if (it.isLowerCase()) it.titlecase(Locale.getDefault()) else it.toString()
+                    }
+                productPriceTV.text =
+                    (product.priceSign ?: product.currency ?: "") + product.price?.let {
+                        utils.formatCurrency(it)
+                    }
             }
         }
     }
@@ -119,8 +155,34 @@ class ProductAdapter(
         fun bind(product: Product) {
             Timber.d("$product")
             with(binding) {
+                val options = RequestOptions()
+                    .error(R.drawable.ic_broken_image)
+                    .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
+
+                //using custom glide image loader to indicate progress in time
+                val photoUrl = product.imageLink ?: product.apiFeaturedImage
+
+                if (photoUrl != null) {
+                    GlideImageLoader(productIV, photoProgressBar).load(photoUrl, options)
+                } else {
+                   productIV.let {
+                        Glide.with(root.context).load(R.drawable.ic_broken_image)
+                            .into(it)
+                    }
+                    photoProgressBar.visibility = View.GONE
+                }
                 productIV.setImageResource(R.drawable.ic_launcher_background)
-                productNameTV.text = product.name
+                productNameTV.text = product.name?.replace(Regex("\\W"), " ")
+                    ?.trim()
+                productDescriptionTV.text = product.description
+                    ?.replace(Regex("\\W"), " ")?.trim()
+                    ?.replaceFirstChar {
+                        if (it.isLowerCase()) it.titlecase(Locale.getDefault()) else it.toString()
+                    }
+                productPriceTV.text =
+                    (product.priceSign ?: product.currency ?: "") + product.price?.let {
+                        utils.formatCurrency(it)
+                    }
             }
         }
     }
