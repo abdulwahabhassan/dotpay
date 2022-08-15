@@ -12,6 +12,7 @@
         android:layout_height="wrap_content"
         android:gravity="top"
         android:elevation="0.3dp"
+        android:theme="@style/MyThemeOverlay_Toolbar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
