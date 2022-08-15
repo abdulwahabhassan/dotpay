@@ -18,7 +18,7 @@
             android:layout_marginTop="16dp"
             android:background="@color/black"
             android:scaleType="center"
-            app:shapeAppearanceOverlay="@style/imageview_shape_appearance_overlay_rounded_edges_50_percent"
+            app:shapeAppearanceOverlay="@style/imageview_shape_appearance_overlay_rounded_edges_5_percent"
             tools:src="@drawable/ic_launcher_foreground"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -46,46 +46,46 @@
             android:ellipsize="end"
             android:fontFamily="@font/roboto_medium"
             android:maxLines="1"
-            tools:text="Some product"
             android:textColor="@color/black"
             android:textSize="13sp"
-            app:layout_constraintEnd_toEndOf="@+id/productIV"
-            app:layout_constraintStart_toStartOf="@+id/productIV"
-            app:layout_constraintTop_toBottomOf="@+id/productIV" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/productIV"
+            tools:text="Some product" />
 
         <TextView
             android:id="@+id/productDescriptionTV"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="8dp"
+            android:layout_marginTop="8dp"
             android:ellipsize="end"
             android:fontFamily="@font/roboto"
-            android:maxLines="2"
             android:lines="2"
-            tools:text="Some product"
+            android:maxLines="2"
             android:textColor="@color/black"
             android:textSize="12sp"
-            android:layout_marginTop="8dp"
-            app:layout_constraintEnd_toEndOf="@+id/productIV"
-            app:layout_constraintStart_toStartOf="@+id/productIV"
-            app:layout_constraintTop_toBottomOf="@+id/productNameTV" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/productNameTV"
+            tools:text="Some product" />
 
         <TextView
             android:id="@+id/productPriceTV"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="8dp"
+            android:layout_marginVertical="8dp"
             android:ellipsize="end"
             android:fontFamily="@font/roboto_bold"
             android:maxLines="1"
-            android:layout_marginVertical="8dp"
-            tools:text="$40.00"
             android:textAlignment="viewStart"
             android:textColor="@color/black"
             android:textSize="12sp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@+id/productIV"
-            app:layout_constraintStart_toStartOf="@+id/productIV"
-            app:layout_constraintTop_toBottomOf="@+id/productDescriptionTV" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/productDescriptionTV"
+            tools:text="$40.00" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>
